@@ -10,10 +10,10 @@ var initialParams = {
   startFromHead: false
 };
 
-initialParams.startTime = new Date().getTime()-360;
+initialParams.startTime = new Date().getTime()-30000;
 
 function getLogs(params) {
-    params.endTime = new Date().getTime()-360;
+    params.endTime = new Date().getTime()-30000;
 
     cloudwatchlogs.getLogEvents(params, function(error, data) {
         if (error) {
@@ -26,7 +26,7 @@ function getLogs(params) {
             });
         }
 
-        params.startTime = params.endTime,
+        params.startTime = undefined;
 
         params.nextToken = data.nextForwardToken;
 
